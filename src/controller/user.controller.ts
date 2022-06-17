@@ -15,7 +15,7 @@ export async function createUserHandler(req: Request<{}, {}, CreateUserInput>, r
     try {
 
         const user = await createUser(body);
-        
+        /*
         const data = {
             from: 'Mailgun Sandbox <postmaster@sandboxa1ffa927368a4d8eb6f1e9b05de4d598.mailgun.org>',
             to: user.email,
@@ -25,8 +25,9 @@ export async function createUserHandler(req: Request<{}, {}, CreateUserInput>, r
         
         await sendEmail(data);
 
+        */
         
-        /*
+        
         await sendEmail({
             from: 'test@test.com',
             to: user.email,
@@ -34,7 +35,7 @@ export async function createUserHandler(req: Request<{}, {}, CreateUserInput>, r
             text: `verification code: ${user.verificationCode}. Id: ${user.id}`
         });
 
-        */
+        
       // await sendEmail();
 
 
