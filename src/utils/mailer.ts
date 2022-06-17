@@ -4,7 +4,7 @@
 //daha sorna araştıracağım
 
 
-/*
+
 import nodemailer, {SendMailOptions} from 'nodemailer';
 import log from '../utils/logger';
 import config from 'config';
