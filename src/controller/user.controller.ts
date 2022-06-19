@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import { CreateUserInput, ForgotPasswordInput, ResetPasswordInput, VerifyUserInput } from "../schema/user.schema";
 import { createUser, findUserById, findUserByMail } from "../service/user.service";
 import log from "../utils/logger";
-import sendEmail from "../utils/mailer";
+//import sendEmail from "../utils/mailer";
 
 
 
@@ -27,13 +27,14 @@ export async function createUserHandler(req: Request<{}, {}, CreateUserInput>, r
 
         */
         
-        
+        /*
         await sendEmail({
             from: 'test@test.com',
             to: user.email,
             subject: 'verification',
             text: `verification code: ${user.verificationCode}. Id: ${user.id}`
         });
+        */
 
         
       // await sendEmail();
