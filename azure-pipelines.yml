@@ -53,6 +53,24 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
+- stage: SCA
+  displayName: SCA stage
+  jobs:
+  - job: SCA
+    displayName: SCA
+
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '18.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        npm audit --force
+        npm fix --if-present
+        npm run test 
+     
+  
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
