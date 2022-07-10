@@ -60,15 +60,10 @@ stages:
     displayName: SCA
 
     steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '18.x'
-      displayName: 'Install Node.js'
 
     - script: |
         npm audit --force
-        npm fix --if-present
-        npm run test 
+        npm audit fix --if-present
      
   
 - stage: Deploy
