@@ -17,7 +17,7 @@ variables:
   # Environment name
   environmentName: 'lokumDiary'
 
-  # Agent VM image name
+  # Agent VM image name 
   vmImageName: 'ubuntu-latest'
 
 stages:
@@ -40,6 +40,13 @@ stages:
         npm run build --if-present
         npm run test --if-present
       displayName: 'npm install, build and test'
+    
+
+    - task: Npm@1
+      displayName: 'npm audit'
+      inputs:
+        command: custom
+        customCommand: 'audit --registry=https://registry.npmjs.org/'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -53,18 +60,7 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
-- stage: SCA
-  displayName: SCA stage
-  jobs:
-  - job: SCA
-    displayName: SCA
 
-    steps:
-
-    - script: |
-        npm audit --force
-        npm audit fix --if-present
-     
   
 - stage: Deploy
   displayName: Deploy stage
