@@ -1,4 +1,5 @@
 # Node.js Express Web App to Linux on Azure
+
 # Build a Node.js Express app and deploy it to Azure as a Linux web app.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
@@ -41,12 +42,21 @@ stages:
         npm run test --if-present
       displayName: 'npm install, build and test'
     
+    
 
     - task: Npm@1
       displayName: 'npm audit'
       inputs:
         command: custom
         customCommand: 'audit --registry=https://registry.npmjs.org/'
+      
+    - task: SonarQubePrepare@5
+      inputs:
+        SonarQube: 'sonarqube'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'lokum_diary_pipeline_lokum_diary_pipeline_AYHnWLHsAUxEff4wswva'
+        cliSources: '.'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'
